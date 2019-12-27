@@ -2,7 +2,7 @@ window.onload = function() {
 	var search_results = 20;
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		search_results = 10;
-    }
+	}
 	var browserlang = navigator.language || navigator.userLanguage; 
 	document.getElementById("search_button").onclick = function() {
 		$("form").on("submit", function(event) {
@@ -46,14 +46,6 @@ window.onload = function() {
 				});
 			},
 			minLength: 2,
-			select: function(event, ui) {
-				if (ui.label) {
-					$('#search_button').attr('disabled',true);
-				}
-				else {
-					$('#search_button').attr('disabled',false);
-				}
-			},
 			open: function() {
 				$(this)
 				.removeClass("ui-corner-all")
@@ -63,6 +55,13 @@ window.onload = function() {
 				$(this)
 				.removeClass("ui-corner-top")
 				.addClass("ui-corner-all");
+			},
+			change: function(event, ui) {
+				if (ui.item) {
+					$('#search_button').attr('disabled',false);
+				} else {
+					$('#search_button').attr('disabled',true);
+				}
 			}
 		});
 	});
